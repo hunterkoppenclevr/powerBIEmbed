@@ -1,0 +1,10 @@
+/*
+Place your custom CSS here
+*/
+.powerbiEmbedRoot {
+    height: 100%;
+}
+
+.powerbiEmbedRoot iframe {
+    border: none;
+}
