@@ -7,27 +7,64 @@
     <icon> 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
     </icon>
     <properties>
-        <propertyGroup caption="Datasource">
-            <property key="embedUrl" type="attribute" required="true">
-                <caption>Embed URL</caption>
-                <description>The attribute that contains the Powerbi Embed URL</description>
-                <attributeTypes>
-                    <attributeType name="String"/>
-                </attributeTypes>
-            </property>
-            <property key="accessToken" type="attribute" required="true">
-                <caption>Access Token</caption>
-                <description>The attribute that contains the Access Token value</description>
-                <attributeTypes>
-                    <attributeType name="String"/>
-                </attributeTypes>
-            </property>
+        <propertyGroup caption="General">
+            <propertyGroup caption="Datasource">
+                <property key="embedUrl" type="attribute" required="true">
+                    <caption>Embed URL</caption>
+                    <description>The attribute that contains the Powerbi Embed URL</description>
+                    <attributeTypes>
+                        <attributeType name="String"/>
+                    </attributeTypes>
+                </property>
+                <property key="accessToken" type="attribute" required="true">
+                    <caption>Access Token</caption>
+                    <description>The attribute that contains the Access Token value</description>
+                    <attributeTypes>
+                        <attributeType name="String"/>
+                    </attributeTypes>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Mode">
+                <property key="viewMode" type="enumeration" defaultValue="view">
+                    <caption>View Mode</caption>
+                    <description>Load the report in View or Edit mode. Make sure the permissions are correctly set in the Token and the Widget aswell if you wish to use Edit mode.</description>
+                    <enumerationValues>
+                        <enumerationValue key="view">View</enumerationValue>
+                        <enumerationValue key="edit">Edit</enumerationValue>
+                    </enumerationValues>
+                </property>
+                <property key="permissions" type="enumeration" defaultValue="read">
+                    <caption>Permissions</caption>
+                    <description>The permission level you want to give to the user. The permissions value that you configure only works if the embed token that you acquired has sufficient privileges.</description>
+                    <enumerationValues>
+                        <enumerationValue key="read">Read</enumerationValue>
+                        <enumerationValue key="readWrite">ReadWrite</enumerationValue>
+                        <enumerationValue key="copy">Copy</enumerationValue>
+                        <enumerationValue key="create">Create</enumerationValue>
+                        <enumerationValue key="all">All</enumerationValue>
+                    </enumerationValues>
+                </property>
+            </propertyGroup>
         </propertyGroup>
-        <propertyGroup caption="Settings">
+        <propertyGroup caption="General Settings">
+            <property key="backgroundTransparent" type="boolean" defaultValue="true">
+                <caption>Transparent background</caption>
+                <description />
+            </property>
             <property key="zoomLevel" type="expression" defaultValue="1" required="false">
                 <caption>Zoom level</caption>
                 <description>The zoom level of the embedded report (default = 1). The zoom level must be between 0.25 (25%) and four (400%).)</description>
                 <returnType type="Decimal" />
+            </property>
+            <property key="defaultPage" type="expression" defaultValue="" required="false">
+                <caption>Default Page</caption>
+                <description>The default page to open when loading the report.</description>
+                <returnType type="String" />
+            </property>
+            <property key="themeJsonString" type="expression" defaultValue="" required="false">
+                <caption>Theme JSON</caption>
+                <description>You can provide your own Theme settings as a JSON String.</description>
+                <returnType type="String" />
             </property>
         </propertyGroup>
         <propertyGroup caption="Panes">
@@ -57,7 +94,7 @@
                     <description />
                 </property>
             </propertyGroup>
-             <propertyGroup caption="Visualizations">
+            <propertyGroup caption="Visualizations">
                 <property key="paneVisualizationsVisible" type="boolean" defaultValue="false">
                     <caption>Visualizations Visible</caption>
                     <description />
@@ -67,21 +104,27 @@
                     <description />
                 </property>
             </propertyGroup>
-             <propertyGroup caption="Bookmarks">
+            <propertyGroup caption="Bookmarks">
                 <property key="paneBookmarksVisible" type="boolean" defaultValue="false">
                     <caption>Bookmarks Visible</caption>
                     <description />
                 </property>
             </propertyGroup>
-             <propertyGroup caption="Selection">
+            <propertyGroup caption="Selection">
                 <property key="paneSelectionVisible" type="boolean" defaultValue="false">
                     <caption>Selection Visible</caption>
                     <description />
                 </property>
             </propertyGroup>
-             <propertyGroup caption="Sync Slicers">
+            <propertyGroup caption="Sync Slicers">
                 <property key="paneSyncSlicersVisible" type="boolean" defaultValue="false">
                     <caption>Sync Slicers Visible</caption>
+                    <description />
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Action Bar">
+                <property key="actionBarVisible" type="boolean" defaultValue="false">
+                    <caption>Action Bar Visible</caption>
                     <description />
                 </property>
             </propertyGroup>

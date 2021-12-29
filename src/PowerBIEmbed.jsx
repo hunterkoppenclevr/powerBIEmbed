@@ -8,7 +8,11 @@ export default class PowerBIEmbed extends Component {
         return <EmbedContainer
             embedUrl={this.props.embedUrl}
             accessToken={this.props.accessToken}
+            viewMode={this.props.viewMode}
+            permissions={this.props.permissions}
             zoomLevel={this.props.zoomLevel}
+            defaultPage={this.props.defaultPage}
+            backgroundTransparent={this.props.backgroundTransparent}
             panePageNavigationVisible={this.props.panePageNavigationVisible}
             paneFiltersExpanded={this.props.paneFiltersExpanded}
             paneFiltersVisible={this.props.paneFiltersVisible}
@@ -19,6 +23,8 @@ export default class PowerBIEmbed extends Component {
             paneBookmarksVisible={this.props.paneBookmarksVisible}
             paneSelectionVisible={this.props.paneSelectionVisible}
             paneSyncSlicersVisible={this.props.paneSyncSlicersVisible}
+            actionBarVisible={this.props.actionBarVisible}
+            themeJsonString={this.props.themeJsonString}
         />;
     }
 }
