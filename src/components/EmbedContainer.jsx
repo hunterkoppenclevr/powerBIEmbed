@@ -46,6 +46,23 @@ class EmbedContainer extends Component {
 	setInitialSetting() {
 		//console.log('viewmode='+this.props.viewMode);
 		const viewMode = this.props.viewMode === 'view' ? models.ViewMode.View : models.ViewMode.Edit
+		let permissions = this.props.permissions;
+		switch (permissions) {
+			case 'readWrite':
+				permissions = models.Permissions.ReadWrite;
+				break;
+			case 'copy':
+				permissions = models.Permissions.Copy;
+				break;
+			case 'create':
+				permissions = models.Permissions.Create;
+				break;
+			case 'all':
+				permissions = models.Permissions.All;
+				break;
+			default:
+				permissions = models.Permissions.Read;
+		};
 		const background = this.props.backgroundTransparent ? models.BackgroundType.Transparent : models.BackgroundType.Default;
 		const pageName = this.props.defaultPage ? this.props.defaultPage.value : undefined;
 		const themeJsonObject = this.props.themeJsonString ? JSON.parse(this.props.themeJsonString.value) : undefined;
@@ -55,6 +72,7 @@ class EmbedContainer extends Component {
 				embedUrl: this.props.embedUrl.value,
 				accessToken: this.props.accessToken.value,
 				viewMode: viewMode,
+				permissions: permissions,
 				pageName: pageName,
 				settings: {
 					...prevState.configuration.settings,
