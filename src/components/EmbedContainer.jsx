@@ -1,7 +1,7 @@
 
 import { Component, createElement } from 'react';
 import { models } from 'powerbi-client';
-import { PowerBIEmbed,  } from 'powerbi-client-react';
+import { PowerBIEmbed, } from 'powerbi-client-react';
 
 // Root Component to demonstrate usage of wrapper component
 class EmbedContainer extends Component {
@@ -18,13 +18,8 @@ class EmbedContainer extends Component {
 				embedUrl: undefined,
 				accessToken: undefined,
 				tokenType: models.TokenType.Embed,
+				pageName: undefined,
 				settings: {
-					panes: {
-						filters: {
-							expanded: false,
-							visible: false
-						}
-					},
 					zoomLevel: 1,
 					background: models.BackgroundType.Transparent,
 				}
@@ -33,7 +28,7 @@ class EmbedContainer extends Component {
 	}
 
 	componentDidMount() {
-		// fired after first render
+		// Fires after first render
 	}
 
 	componentDidUpdate(prevProps) {
@@ -51,8 +46,34 @@ class EmbedContainer extends Component {
 						accessToken: this.props.accessToken.value,
 						settings: {
 							...prevState.configuration.settings,
+							panes: {
+								bookmarks: {
+									visible: this.props.paneBookmarksVisible
+								},
+								fields: {
+									visible: this.props.paneFieldsVisible,
+									expanded: this.props.paneFieldsExpanded
+								},
+								filters: {
+									expanded: this.props.paneFiltersExpanded,
+									visible: this.props.paneFiltersVisible
+								},
+								pageNavigation: {
+									visible: this.props.panePageNavigationVisible
+								},
+								selection: {
+									visible: this.props.paneSelectionVisible
+								},
+								syncSlicers: {
+									visible: this.props.paneSyncSlicersVisible
+								},
+								visualizations: {
+									visible: this.props.paneVisualizationsVisible,
+									expanded: this.props.paneVisualizationsExpanded
+								}
+							},
 							zoomLevel: Number(this.props.zoomLevel.value)
-						}  
+						}
 					}
 				}));
 			} else if (prevProps.zoomLevel.value !== this.props.zoomLevel.value) {
@@ -62,7 +83,7 @@ class EmbedContainer extends Component {
 						settings: {
 							...prevState.configuration.settings,
 							zoomLevel: Number(this.props.zoomLevel.value)
-						}  
+						}
 					}
 				}));
 			}

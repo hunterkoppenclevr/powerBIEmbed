@@ -30,5 +30,61 @@
                 <returnType type="Decimal" />
             </property>
         </propertyGroup>
+        <propertyGroup caption="Panes">
+            <propertyGroup caption="Page Navigation">
+                <property key="panePageNavigationVisible" type="boolean" defaultValue="true">
+                    <caption>Page Navigation Visible</caption>
+                    <description />
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Filters">
+                <property key="paneFiltersVisible" type="boolean" defaultValue="false">
+                    <caption>Filters Visible</caption>
+                    <description />
+                </property>
+                <property key="paneFiltersExpanded" type="boolean" defaultValue="false">
+                    <caption>Filters Expanded</caption>
+                    <description />
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Fields">
+                <property key="paneFieldsVisible" type="boolean" defaultValue="false">
+                    <caption>Fields Visible</caption>
+                    <description />
+                </property>
+                <property key="paneFieldsExpanded" type="boolean" defaultValue="false">
+                    <caption>Fields Expanded</caption>
+                    <description />
+                </property>
+            </propertyGroup>
+             <propertyGroup caption="Visualizations">
+                <property key="paneVisualizationsVisible" type="boolean" defaultValue="false">
+                    <caption>Visualizations Visible</caption>
+                    <description />
+                </property>
+                <property key="paneVisualizationsExpanded" type="boolean" defaultValue="false">
+                    <caption>Visualizations Expanded</caption>
+                    <description />
+                </property>
+            </propertyGroup>
+             <propertyGroup caption="Bookmarks">
+                <property key="paneBookmarksVisible" type="boolean" defaultValue="false">
+                    <caption>Bookmarks Visible</caption>
+                    <description />
+                </property>
+            </propertyGroup>
+             <propertyGroup caption="Selection">
+                <property key="paneSelectionVisible" type="boolean" defaultValue="false">
+                    <caption>Selection Visible</caption>
+                    <description />
+                </property>
+            </propertyGroup>
+             <propertyGroup caption="Sync Slicers">
+                <property key="paneSyncSlicersVisible" type="boolean" defaultValue="false">
+                    <caption>Sync Slicers Visible</caption>
+                    <description />
+                </property>
+            </propertyGroup>
+        </propertyGroup>
     </properties>
 </widget>
