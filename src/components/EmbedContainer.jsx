@@ -7,16 +7,17 @@ import { PowerBIEmbed, } from 'powerbi-client-react';
 class EmbedContainer extends Component {
 	constructor(props) {
 		super(props);
-		this.eventHandlersMap = null;
-
 		const baseConfiguration = {
 			type: 'report',
 			tokenType: models.TokenType.Embed
 		}
-
 		this.state = {
 			configuration: baseConfiguration
 		};
+
+		this.eventHandlersMap = null;
+		this.report = undefined;
+		this.getFiltersHandler = this.getFilters.bind(this);
 	}
 
 	componentDidUpdate(prevProps) {
@@ -112,9 +113,14 @@ class EmbedContainer extends Component {
 					theme: {
 						themeJson: themeJsonObject
 					}
-				}
+				},
+				filters: []
 			}
 		}));
+	}
+
+	getFilters() {
+		console.log(this.report.getFilters());
 	}
 
 	render() {
@@ -130,15 +136,25 @@ class EmbedContainer extends Component {
 			}]
 		]);
 
+		let filtersButton = undefined
+		if (this.props.getFiltersButton) {
+			filtersButton = <button onClick={this.getFiltersHandler}>Get Filters</button>
+		}
+
+
 		return (
-			<PowerBIEmbed
-				embedConfig={this.state.configuration}
-				eventHandlers={eventHandlersMap}
-				cssClassName={"powerbiEmbedRoot"}
-				getEmbeddedComponent={(embeddedReport) => {
-					window.report = embeddedReport;
-				}}
-			/>
+			<div className='powerbiEmbedRoot'>
+				{filtersButton}
+				<PowerBIEmbed
+					embedConfig={this.state.configuration}
+					eventHandlers={eventHandlersMap}
+					cssClassName={"powerbiEmbedRoot"}
+					getEmbeddedComponent={(embeddedReport) => {
+						this.report = embeddedReport;
+					}}
+				/>
+			</div>
+
 		);
 	};
 }

@@ -25,6 +25,7 @@ export default class PowerBIEmbed extends Component {
             paneSyncSlicersVisible={this.props.paneSyncSlicersVisible}
             actionBarVisible={this.props.actionBarVisible}
             themeJsonString={this.props.themeJsonString}
+            getFiltersButton={this.props.getFiltersButton}
         />;
     }
 }
