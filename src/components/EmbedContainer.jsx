@@ -67,6 +67,7 @@ class EmbedContainer extends Component {
 		const background = this.props.backgroundTransparent ? models.BackgroundType.Transparent : models.BackgroundType.Default;
 		const pageName = this.props.defaultPage ? this.props.defaultPage.value : undefined;
 		const themeJsonObject = this.props.themeJsonString ? JSON.parse(this.props.themeJsonString.value) : undefined;
+		const filters = this.props.filterJson ? JSON.parse(this.props.filterJson.value) : [];
 		this.setState(prevState => ({
 			configuration: {
 				...prevState.configuration,
@@ -114,7 +115,7 @@ class EmbedContainer extends Component {
 						themeJson: themeJsonObject
 					}
 				},
-				filters: []
+				filters: filters
 			}
 		}));
 	}

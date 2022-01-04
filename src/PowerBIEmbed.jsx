@@ -26,6 +26,7 @@ export default class PowerBIEmbed extends Component {
             actionBarVisible={this.props.actionBarVisible}
             themeJsonString={this.props.themeJsonString}
             getFiltersButton={this.props.getFiltersButton}
+            filterJson={this.props.filterJson}
         />;
     }
 }

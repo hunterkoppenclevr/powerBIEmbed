@@ -133,7 +133,14 @@
             <propertyGroup caption="Get Filters">
                 <property key="getFiltersButton" type="boolean" defaultValue="false">
                     <caption>Get filters button</caption>
-                    <description>Add a get filters button at the top of the report, which when clicked will log all filters to the console which you can use to base your custom filter data on.</description>
+                    <description>Add a get filters button at the top of the report, which when clicked will log all filters to the console in a promise which you can use to base your custom filter data on.</description>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Set Filters">
+                <property key="filterJson" type="expression" defaultValue="" required="false">
+                    <caption>Filter JSON</caption>
+                    <description>Supply a valid JSON to set any custom filters. Must be a list, see example microflows for building the JSON.</description>
+                    <returnType type="String" />
                 </property>
             </propertyGroup>
         </propertyGroup>
