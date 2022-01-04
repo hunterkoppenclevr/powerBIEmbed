@@ -129,25 +129,28 @@ class EmbedContainer extends Component {
         const eventHandlersMap = new Map([
             [
                 "loaded",
+                // eslint-disable-next-line
                 function () {
                     console.log("Report has loaded");
                 }
             ],
             [
                 "rendered",
+                // eslint-disable-next-line
                 function () {
                     console.log("Report has rendered");
                 }
             ],
             [
                 "error",
+                // eslint-disable-next-line
                 function (event) {
                     console.log(event.detail);
                 }
             ]
         ]);
 
-        let filtersButton = undefined;
+        let filtersButton;
         if (this.props.getFiltersButton) {
             filtersButton = <button onClick={this.getFiltersHandler}>Get Filters</button>;
         }
