@@ -4,47 +4,57 @@ import { PowerBIEmbed } from "powerbi-client-react";
 
 // Root Component to demonstrate usage of wrapper component
 class EmbedContainer extends Component {
-    constructor(props) {
-        super(props);
-        const baseConfiguration = {
-            type: "report",
-            tokenType: models.TokenType.Embed
-        };
-        this.state = {
-            configuration: baseConfiguration
-        };
+    baseConfiguration = {
+        type: "report",
+        tokenType: models.TokenType.Embed
+    };
 
-        this.eventHandlersMap = null;
-        this.report = undefined;
-        this.getFiltersHandler = this.getFilters.bind(this);
-    }
+    state = {
+        configuration: this.baseConfiguration,
+        report: null
+    };
+
+    getFiltersHandler = this.getFilters.bind(this);
+    getEmbeddedReportHandler = this.getEmbeddedReport.bind(this);
 
     componentDidUpdate(prevProps) {
-        console.debug("configUpdateWithUrl=" + JSON.stringify(this.state.configuration));
-        if (prevProps && prevProps === this.props) {
-            // Nothing changed
-        } else if (!this.props && !prevProps) {
-            // Props still empty
-        } else {
-            if (prevProps.embedUrl.value !== this.props.embedUrl.value) {
-                this.setInitialSetting();
-            } else if (prevProps.zoomLevel.value !== this.props.zoomLevel.value) {
-                // Update state if zoomlevel has changed.
-                this.setState(prevState => ({
-                    configuration: {
-                        ...prevState.configuration,
-                        settings: {
-                            ...prevState.configuration.settings,
-                            zoomLevel: Number(this.props.zoomLevel.value)
-                        }
+        if (prevProps.embedUrl.value !== this.props.embedUrl.value) {
+            this.setInitialSetting();
+        } else if (prevProps.zoomLevel.value !== this.props.zoomLevel.value) {
+            // Update state if zoomlevel has changed.
+            this.setState(prevState => ({
+                configuration: {
+                    ...prevState.configuration,
+                    settings: {
+                        ...prevState.configuration.settings,
+                        zoomLevel: Number(this.props.zoomLevel.value)
                     }
-                }));
-            }
+                }
+            }));
         }
     }
 
     setInitialSetting() {
-        //console.log('viewmode='+this.props.viewMode);
+        const {
+            backgroundTransparent,
+            defaultPage,
+            themeJsonString,
+            filterJson,
+            embedUrl,
+            accessToken,
+            zoomLevel,
+            paneBookmarksVisible,
+            paneFieldsVisible,
+            paneFieldsExpanded,
+            paneFiltersExpanded,
+            paneFiltersVisible,
+            panePageNavigationVisible,
+            paneSelectionVisible,
+            paneSyncSlicersVisible,
+            paneVisualizationsVisible,
+            paneVisualizationsExpanded,
+            actionBarVisible
+        } = this.props;
         const viewMode = this.props.viewMode === "view" ? models.ViewMode.View : models.ViewMode.Edit;
         let permissions = this.props.permissions;
         switch (permissions) {
@@ -63,66 +73,68 @@ class EmbedContainer extends Component {
             default:
                 permissions = models.Permissions.Read;
         }
-        const background = this.props.backgroundTransparent
-            ? models.BackgroundType.Transparent
-            : models.BackgroundType.Default;
-        const pageName = this.props.defaultPage ? this.props.defaultPage.value : undefined;
-        const themeJsonObject = this.props.themeJsonString ? JSON.parse(this.props.themeJsonString.value) : undefined;
-        const filters = this.props.filterJson ? JSON.parse(this.props.filterJson.value) : [];
+        const background = backgroundTransparent ? models.BackgroundType.Transparent : models.BackgroundType.Default;
+        const pageName = defaultPage ? defaultPage.value : undefined;
+        const themeJson = themeJsonString ? JSON.parse(themeJsonString.value) : undefined;
+        const filters = filterJson && filterJson.value ? JSON.parse(filterJson.value) : [];
         this.setState(prevState => ({
             configuration: {
                 ...prevState.configuration,
-                embedUrl: this.props.embedUrl.value,
-                accessToken: this.props.accessToken.value,
-                viewMode: viewMode,
-                permissions: permissions,
-                pageName: pageName,
+                embedUrl: embedUrl.value,
+                accessToken: accessToken.value,
+                viewMode,
+                permissions,
+                pageName,
                 settings: {
                     ...prevState.configuration.settings,
-                    zoomLevel: Number(this.props.zoomLevel.value),
+                    zoomLevel: Number(zoomLevel.value),
                     background: background,
                     panes: {
                         bookmarks: {
-                            visible: this.props.paneBookmarksVisible
+                            visible: paneBookmarksVisible
                         },
                         fields: {
-                            visible: this.props.paneFieldsVisible,
-                            expanded: this.props.paneFieldsExpanded
+                            visible: paneFieldsVisible,
+                            expanded: paneFieldsExpanded
                         },
                         filters: {
-                            expanded: this.props.paneFiltersExpanded,
-                            visible: this.props.paneFiltersVisible
+                            expanded: paneFiltersExpanded,
+                            visible: paneFiltersVisible
                         },
                         pageNavigation: {
-                            visible: this.props.panePageNavigationVisible
+                            visible: panePageNavigationVisible
                         },
                         selection: {
-                            visible: this.props.paneSelectionVisible
+                            visible: paneSelectionVisible
                         },
                         syncSlicers: {
-                            visible: this.props.paneSyncSlicersVisible
+                            visible: paneSyncSlicersVisible
                         },
                         visualizations: {
-                            visible: this.props.paneVisualizationsVisible,
-                            expanded: this.props.paneVisualizationsExpanded
+                            visible: paneVisualizationsVisible,
+                            expanded: paneVisualizationsExpanded
                         }
                     },
                     bars: {
                         actionBar: {
-                            visible: this.props.actionBarVisible
+                            visible: actionBarVisible
                         }
                     },
                     theme: {
-                        themeJson: themeJsonObject
+                        themeJson
                     }
                 },
-                filters: filters
+                filters
             }
         }));
     }
 
+    getEmbeddedReport(embeddedReport) {
+        this.setState({ report: embeddedReport });
+    }
+
     getFilters() {
-        console.log(this.report.getFilters());
+        console.log(this.state.report.getFilters());
     }
 
     render() {
@@ -131,21 +143,21 @@ class EmbedContainer extends Component {
                 "loaded",
                 // eslint-disable-next-line
                 function () {
-                    console.log("Report has loaded");
+                    console.debug("Report has loaded");
                 }
             ],
             [
                 "rendered",
                 // eslint-disable-next-line
                 function () {
-                    console.log("Report has rendered");
+                    console.debug("Report has rendered");
                 }
             ],
             [
                 "error",
                 // eslint-disable-next-line
                 function (event) {
-                    console.log(event.detail);
+                    console.error(event.detail);
                 }
             ]
         ]);
@@ -162,9 +174,7 @@ class EmbedContainer extends Component {
                     embedConfig={this.state.configuration}
                     eventHandlers={eventHandlersMap}
                     cssClassName={"powerbiEmbedRoot"}
-                    getEmbeddedComponent={embeddedReport => {
-                        this.report = embeddedReport;
-                    }}
+                    getEmbeddedComponent={this.getEmbeddedReportHandler}
                 />
             </div>
         );
